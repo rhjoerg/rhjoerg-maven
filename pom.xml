@@ -17,6 +17,7 @@
 	<name>rhjoerg-maven</name>
 	
 	<modules>
+		<module>rhjoerg-maven-dependencies</module>
 	</modules>
 		
 	<url>https://github.com/rhjoerg/rhjoerg-maven</url>
