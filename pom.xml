@@ -18,6 +18,7 @@
 	
 	<modules>
 		<module>rhjoerg-maven-dependencies</module>
+		<module>rhjoerg-maven-parent</module>
 	</modules>
 		
 	<url>https://github.com/rhjoerg/rhjoerg-maven</url>
