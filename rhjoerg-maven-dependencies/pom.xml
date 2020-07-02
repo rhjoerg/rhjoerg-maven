@@ -15,15 +15,39 @@
 	<packaging>pom</packaging>	
 	<name>rhjoerg-maven-dependencies</name>
 	
+	<properties>
+	
+		<!-- ch.rhjoerg.plexus -->
+		
+		<rhjoerg-plexus-dependencies.version>0.0.1-SNAPSHOT</rhjoerg-plexus-dependencies.version>
+		<rhjoerg-plexus-starter.version>0.0.1-SNAPSHOT</rhjoerg-plexus-starter.version>
+		<rhjoerg-plexus-starter-test.version>0.0.1-SNAPSHOT</rhjoerg-plexus-starter-test.version>
+		
+	</properties>
+	
 	<dependencyManagement>
 		<dependencies>
+		
 			<dependency>
 				<groupId>ch.rhjoerg.plexus</groupId>
 				<artifactId>rhjoerg-plexus-dependencies</artifactId>
-				<version>0.0.1-SNAPSHOT</version>
+				<version>${rhjoerg-plexus-dependencies.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			
+			<dependency>
+				<groupId>ch.rhjoerg.plexus</groupId>
+				<artifactId>rhjoerg-plexus-starter</artifactId>
+				<version>${rhjoerg-plexus-starter.version}</version>
+			</dependency>
+			
+			<dependency>
+				<groupId>ch.rhjoerg.plexus</groupId>
+				<artifactId>rhjoerg-plexus-starter-test</artifactId>
+				<version>${rhjoerg-plexus-starter-test.version}</version>
+			</dependency>
+			
 		</dependencies>
 	</dependencyManagement>
 	

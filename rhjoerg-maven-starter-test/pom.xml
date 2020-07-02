@@ -16,12 +16,21 @@
 	<packaging>jar</packaging>
 	<name>rhjoerg-maven-starter-test</name>
 	
+	<properties>
+		<rhjoerg-maven-starter.version>0.0.1-SNAPSHOT</rhjoerg-maven-starter.version>
+	</properties>
+	
 	<dependencies>
 	
 		<dependency>
 			<groupId>ch.rhjoerg.maven</groupId>
 			<artifactId>rhjoerg-maven-starter</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${rhjoerg-maven-starter.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>ch.rhjoerg.plexus</groupId>
+			<artifactId>rhjoerg-plexus-starter-test</artifactId>
 		</dependency>
 	
 		<dependency>
