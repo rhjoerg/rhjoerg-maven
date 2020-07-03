@@ -25,6 +25,12 @@
 		
 		<!-- org.apache.maven -->
 		
+		<!-- https://mvnrepository.com/artifact/org.apache.maven/maven-artifact -->
+		<maven-artifact.version>3.6.3</maven-artifact.version>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.maven/maven-model -->
+		<maven-model.version>3.6.3</maven-model.version>
+
 		<!-- https://mvnrepository.com/artifact/org.apache.maven/maven-plugin-api -->
 		<maven-plugin-api.version>3.6.3</maven-plugin-api.version>
 		
@@ -62,6 +68,18 @@
 			
 			<!-- org.apache.maven -->
 			
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-artifact</artifactId>
+				<version>${maven-artifact.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-model</artifactId>
+				<version>${maven-model.version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>org.apache.maven</groupId>
 				<artifactId>maven-plugin-api</artifactId>
