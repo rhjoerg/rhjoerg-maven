@@ -21,6 +21,7 @@
 		<module>rhjoerg-maven-parent</module>
 		<module>rhjoerg-maven-starter</module>
 		<module>rhjoerg-maven-starter-test</module>
+		<module>rhjoerg-maven-plugin</module>
 	</modules>
 		
 	<url>https://github.com/rhjoerg/rhjoerg-maven</url>
