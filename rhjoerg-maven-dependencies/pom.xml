@@ -23,10 +23,22 @@
 		<rhjoerg-plexus-starter.version>0.0.1-SNAPSHOT</rhjoerg-plexus-starter.version>
 		<rhjoerg-plexus-starter-test.version>0.0.1-SNAPSHOT</rhjoerg-plexus-starter-test.version>
 		
+		<!-- org.apache.maven -->
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.maven/maven-plugin-api -->
+		<maven-plugin-api.version>3.6.3</maven-plugin-api.version>
+		
+		<!-- org.apache.maven.plugin-tools -->
+		
+		<!-- https://mvnrepository.com/artifact/org.apache.maven.plugin-tools/maven-plugin-annotations -->
+		<maven-plugin-annotations.version>3.6.0</maven-plugin-annotations.version>
+		
 	</properties>
 	
 	<dependencyManagement>
 		<dependencies>
+		
+			<!-- ch.rhjoerg.plexus -->
 		
 			<dependency>
 				<groupId>ch.rhjoerg.plexus</groupId>
@@ -46,6 +58,22 @@
 				<groupId>ch.rhjoerg.plexus</groupId>
 				<artifactId>rhjoerg-plexus-starter-test</artifactId>
 				<version>${rhjoerg-plexus-starter-test.version}</version>
+			</dependency>
+			
+			<!-- org.apache.maven -->
+			
+			<dependency>
+				<groupId>org.apache.maven</groupId>
+				<artifactId>maven-plugin-api</artifactId>
+				<version>${maven-plugin-api.version}</version>
+			</dependency>
+			
+		<!-- org.apache.maven.plugin-tools -->
+		
+			<dependency>
+				<groupId>org.apache.maven.plugin-tools</groupId>
+				<artifactId>maven-plugin-annotations</artifactId>
+				<version>${maven-plugin-annotations.version}</version>
 			</dependency>
 			
 		</dependencies>
