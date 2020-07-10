@@ -27,6 +27,12 @@
 		</dependency>
 		
 		<dependency>
+			<groupId>ch.rhjoerg.plexus</groupId>
+			<artifactId>rhjoerg-plexus-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter</artifactId>
 			<scope>test</scope>
