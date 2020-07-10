@@ -18,6 +18,13 @@
 	
 	<dependencies>
 	
+		<!-- ch.rhjoerg.plexus -->
+		
+		<dependency>
+			<groupId>ch.rhjoerg.plexus</groupId>
+			<artifactId>rhjoerg-plexus-starter</artifactId>
+		</dependency>
+	
 		<!-- org.apache.maven -->
 		
 		<dependency>
