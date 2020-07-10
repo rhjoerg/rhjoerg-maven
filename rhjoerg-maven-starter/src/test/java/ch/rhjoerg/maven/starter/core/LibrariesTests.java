@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 public class LibrariesTests extends AbstractLibraryTests
 {
-	private static final Set<String> TREATED_LIBRARIES = Set.of("plexus-cipher");
+	private static final Set<String> TREATED_LIBRARIES = Set.of("org.eclipse.sisu.plexus", "plexus-cipher", "plexus-sec-dispatcher");
 
 	@Test
 	public void testNamed() throws Exception

@@ -11,6 +11,7 @@ import javax.inject.Inject;
 
 import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.component.annotations.Component;
+import org.codehaus.plexus.component.repository.exception.ComponentLookupException;
 
 import ch.rhjoerg.commons.io.Read;
 import ch.rhjoerg.commons.tool.ExcludingClassLoader;
@@ -28,7 +29,7 @@ public abstract class AbstractLibraryTests
 	public final static String COMPONENTS = "META-INF/plexus/components.xml";
 
 	@Inject
-	private PlexusContainer container;
+	protected PlexusContainer container;
 
 	@Inject
 	private ExcludingClassLoader excludingClassLoader;
@@ -59,7 +60,7 @@ public abstract class AbstractLibraryTests
 		{
 			Component component = entry.component();
 
-			if (!container.hasComponent(component.role(), component.hint()))
+			if (!testComponent(component))
 			{
 				error = true;
 				System.err.println("missing component: " + component.role() + " (" + component.hint() + ")");
@@ -67,6 +68,20 @@ public abstract class AbstractLibraryTests
 		}
 
 		assertFalse(error);
+	}
+
+	protected boolean testComponent(Component component)
+	{
+		try
+		{
+			container.lookup(component.role(), component.hint());
+
+			return true;
+		}
+		catch (ComponentLookupException e)
+		{
+			return false;
+		}
 	}
 
 	protected List<String> namedClasses(String library) throws Exception

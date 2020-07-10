@@ -14,7 +14,7 @@ import ch.rhjoerg.plexus.starter.annotation.PlexusPackages;
 @Retention(RUNTIME)
 @Target(TYPE)
 @Inherited
-@PlexusPackages("org.sonatype.plexus.components.cipher")
+@PlexusPackages({ "org.sonatype.plexus.components.cipher", "ch.rhjoerg.maven.starter.security" })
 public @interface EnablePlexusCipher
 {
 }
