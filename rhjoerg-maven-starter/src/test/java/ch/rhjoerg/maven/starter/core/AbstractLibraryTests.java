@@ -24,6 +24,9 @@ import ch.rhjoerg.plexus.starter.test.component.NamedParser;
 @EnablePlexusCipher
 public abstract class AbstractLibraryTests
 {
+	public final static String NAMED = "META-INF/sisu/javax.inject.Named";
+	public final static String COMPONENTS = "META-INF/plexus/components.xml";
+
 	@Inject
 	private PlexusContainer container;
 
@@ -68,7 +71,7 @@ public abstract class AbstractLibraryTests
 
 	protected List<String> namedClasses(String library) throws Exception
 	{
-		URL url = findUrl("META-INF/sisu/javax.inject.Named", library);
+		URL url = findUrl(NAMED, library);
 		String src = Read.string(url, UTF_8);
 		NamedParser parser = new NamedParser();
 
@@ -77,18 +80,24 @@ public abstract class AbstractLibraryTests
 
 	protected List<ComponentEntry> componentEntries(String library) throws Exception
 	{
-		URL url = findUrl("META-INF/plexus/components.xml", library);
+		URL url = findUrl(COMPONENTS, library);
 		String xml = Read.string(url, UTF_8);
 		ComponentParser parser = new ComponentParser(excludingClassLoader);
 
 		return parser.parse(xml);
 	}
 
-	private URL findUrl(String name, String library) throws Exception
+	protected URL findUrl(String name, String library) throws Exception
 	{
-		ClassLoader classLoader = excludingClassLoader.getParent();
-		List<URL> urls = Collections.list(classLoader.getResources(name));
+		List<URL> urls = findUrls(name);
 
 		return urls.stream().filter(u -> u.toString().contains(library)).findFirst().get();
+	}
+
+	protected List<URL> findUrls(String name) throws Exception
+	{
+		ClassLoader classLoader = excludingClassLoader.getParent();
+
+		return Collections.list(classLoader.getResources(name));
 	}
 }
