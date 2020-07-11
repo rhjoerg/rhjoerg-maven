@@ -7,7 +7,7 @@ import org.sonatype.plexus.components.sec.dispatcher.SecDispatcher;
 
 import ch.rhjoerg.maven.starter.core.AbstractLibraryTests;
 
-public class PlexusCipherTests extends AbstractLibraryTests
+public class PlexusCipherLibraryTests extends AbstractLibraryTests
 {
 	@Test
 	public void test() throws Exception
