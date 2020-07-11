@@ -16,10 +16,10 @@ import org.codehaus.plexus.component.repository.exception.ComponentLookupExcepti
 import ch.rhjoerg.commons.io.Read;
 import ch.rhjoerg.commons.tool.ExcludingClassLoader;
 import ch.rhjoerg.maven.starter.security.EnablePlexusCipher;
+import ch.rhjoerg.plexus.starter.dependency.NamedParser;
 import ch.rhjoerg.plexus.starter.test.WithPlexus;
 import ch.rhjoerg.plexus.starter.test.component.ComponentEntry;
 import ch.rhjoerg.plexus.starter.test.component.ComponentParser;
-import ch.rhjoerg.plexus.starter.test.component.NamedParser;
 
 @WithPlexus
 @EnablePlexusCipher
@@ -36,10 +36,10 @@ public abstract class AbstractLibraryTests
 
 	protected void testNamedClasses(String library) throws Exception
 	{
-		List<String> entries = namedClasses(library);
+		List<Class<?>> entries = namedClasses(library);
 		boolean error = false;
 
-		for (String entry : entries)
+		for (Class<?> entry : entries)
 		{
 			if (!container.hasComponent(entry))
 			{
@@ -84,11 +84,11 @@ public abstract class AbstractLibraryTests
 		}
 	}
 
-	protected List<String> namedClasses(String library) throws Exception
+	protected List<Class<?>> namedClasses(String library) throws Exception
 	{
 		URL url = findUrl(NAMED, library);
 		String src = Read.string(url, UTF_8);
-		NamedParser parser = new NamedParser();
+		NamedParser parser = new NamedParser(excludingClassLoader);
 
 		return parser.parse(src);
 	}
