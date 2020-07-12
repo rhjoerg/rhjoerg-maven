@@ -15,6 +15,7 @@ import org.codehaus.plexus.component.repository.exception.ComponentLookupExcepti
 
 import ch.rhjoerg.commons.io.Read;
 import ch.rhjoerg.commons.tool.ExcludingClassLoader;
+import ch.rhjoerg.maven.starter.artifact.repository.EnableMavenRepositoryLayout;
 import ch.rhjoerg.maven.starter.security.EnablePlexusCipher;
 import ch.rhjoerg.plexus.starter.dependency.ComponentParser;
 import ch.rhjoerg.plexus.starter.dependency.ComponentParser.Descriptor;
@@ -23,6 +24,7 @@ import ch.rhjoerg.plexus.starter.test.WithPlexus;
 
 @WithPlexus
 @EnablePlexusCipher
+@EnableMavenRepositoryLayout
 public abstract class AbstractLibraryTests
 {
 	public final static String NAMED = "META-INF/sisu/javax.inject.Named";
