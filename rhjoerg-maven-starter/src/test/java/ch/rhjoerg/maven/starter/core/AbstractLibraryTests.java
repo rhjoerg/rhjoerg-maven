@@ -16,10 +16,10 @@ import org.codehaus.plexus.component.repository.exception.ComponentLookupExcepti
 import ch.rhjoerg.commons.io.Read;
 import ch.rhjoerg.commons.tool.ExcludingClassLoader;
 import ch.rhjoerg.maven.starter.security.EnablePlexusCipher;
+import ch.rhjoerg.plexus.starter.dependency.ComponentParser;
+import ch.rhjoerg.plexus.starter.dependency.ComponentParser.Descriptor;
 import ch.rhjoerg.plexus.starter.dependency.NamedParser;
 import ch.rhjoerg.plexus.starter.test.WithPlexus;
-import ch.rhjoerg.plexus.starter.test.component.ComponentEntry;
-import ch.rhjoerg.plexus.starter.test.component.ComponentParser;
 
 @WithPlexus
 @EnablePlexusCipher
@@ -53,10 +53,10 @@ public abstract class AbstractLibraryTests
 
 	protected void testComponents(String library) throws Exception
 	{
-		List<ComponentEntry> entries = componentEntries(library);
+		List<Descriptor> entries = componentEntries(library);
 		boolean error = false;
 
-		for (ComponentEntry entry : entries)
+		for (Descriptor entry : entries)
 		{
 			Component component = entry.component();
 
@@ -93,7 +93,7 @@ public abstract class AbstractLibraryTests
 		return parser.parse(src);
 	}
 
-	protected List<ComponentEntry> componentEntries(String library) throws Exception
+	protected List<Descriptor> componentEntries(String library) throws Exception
 	{
 		URL url = findUrl(COMPONENTS, library);
 		String xml = Read.string(url, UTF_8);
