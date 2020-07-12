@@ -12,11 +12,6 @@ public class PlexusCipherLibraryTests extends AbstractLibraryTests
 	@Test
 	public void test() throws Exception
 	{
-		testNamedClasses("plexus-cipher");
-		testComponents("plexus-cipher");
-
-		testComponents("plexus-sec-dispatcher");
-
 		container.lookup(Logger.class);
 		container.lookup(PlexusCipher.class, "default");
 		container.lookup(SecDispatcher.class, "default");
