@@ -70,6 +70,8 @@ public class MavenDependenciesTests
 			list.add(entry);
 		}
 
+		map.remove("org.apache.maven.execution.scope.internal");
+
 		List<String> pkgs = new ArrayList<>(map.keySet());
 
 		Comparator<String> sizeComp = (s1, s2) -> map.get(s1).size() - map.get(s2).size();
