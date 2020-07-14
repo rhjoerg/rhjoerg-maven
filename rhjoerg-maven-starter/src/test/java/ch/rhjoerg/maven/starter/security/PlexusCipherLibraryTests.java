@@ -1,14 +1,22 @@
 package ch.rhjoerg.maven.starter.security;
 
+import javax.inject.Inject;
+
+import org.codehaus.plexus.PlexusContainer;
 import org.codehaus.plexus.logging.Logger;
 import org.junit.jupiter.api.Test;
 import org.sonatype.plexus.components.cipher.PlexusCipher;
 import org.sonatype.plexus.components.sec.dispatcher.SecDispatcher;
 
-import ch.rhjoerg.maven.starter.core.AbstractLibraryTests;
+import ch.rhjoerg.maven.starter.TestConfiguration;
+import ch.rhjoerg.plexus.starter.test.WithPlexus;
 
-public class PlexusCipherLibraryTests extends AbstractLibraryTests
+@WithPlexus(TestConfiguration.class)
+public class PlexusCipherLibraryTests
 {
+	@Inject
+	private PlexusContainer container;
+
 	@Test
 	public void test() throws Exception
 	{

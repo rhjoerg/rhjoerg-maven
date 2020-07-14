@@ -1,5 +1,6 @@
 package ch.rhjoerg.maven.starter.core;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -13,14 +14,31 @@ import org.codehaus.plexus.PlexusContainer;
 import org.junit.jupiter.api.Test;
 
 import ch.rhjoerg.commons.function.ThrowingConsumer;
+import ch.rhjoerg.commons.tool.ExcludingClassLoader;
+import ch.rhjoerg.maven.starter.TestConfiguration;
 import ch.rhjoerg.plexus.core.util.Keys;
 import ch.rhjoerg.plexus.starter.dependency.Dependencies;
 import ch.rhjoerg.plexus.starter.dependency.Dependencies.Entry;
+import ch.rhjoerg.plexus.starter.test.WithPlexus;
 
-public class MavenDependenciesTests extends AbstractLibraryTests
+@WithPlexus(TestConfiguration.class)
+public class MavenDependenciesTests
 {
+	public final static String NAMED = "META-INF/sisu/javax.inject.Named";
+	public final static String COMPONENTS = "META-INF/plexus/components.xml";
+
 	@Inject
 	private PlexusContainer container;
+
+	@Inject
+	private ExcludingClassLoader excludingClassLoader;
+
+	protected List<URL> findUrls(String name) throws Exception
+	{
+		ClassLoader classLoader = excludingClassLoader.getParent();
+
+		return Collections.list(classLoader.getResources(name));
+	}
 
 	@Test
 	public void test() throws Exception
