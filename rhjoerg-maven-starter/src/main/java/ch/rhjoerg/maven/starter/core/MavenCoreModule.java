@@ -15,8 +15,14 @@ import org.apache.maven.exception.ExceptionHandler;
 import org.apache.maven.execution.MojoExecutionListener;
 import org.apache.maven.execution.scope.MojoExecutionScoped;
 import org.apache.maven.execution.scope.internal.MojoExecutionScope;
+import org.apache.maven.plugin.LegacySupport;
 import org.apache.maven.plugin.MojoExecution;
+import org.apache.maven.plugin.internal.DefaultLegacySupport;
+import org.apache.maven.project.DefaultProjectRealmCache;
 import org.apache.maven.project.MavenProject;
+import org.apache.maven.project.ProjectRealmCache;
+import org.apache.maven.rtinfo.RuntimeInformation;
+import org.apache.maven.rtinfo.internal.DefaultRuntimeInformation;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Key;
@@ -28,15 +34,24 @@ public class MavenCoreModule extends AbstractModule
 	@Override
 	protected void configure()
 	{
+		configureRuntimeInformation();
 		configureExceptionHandler();
 		configureArtifactRepositoryLayout();
 		configureMetadataReader();
 		configureResolutionErrorHandler();
 		configureBeanConfigurator();
+		configureLegacySupport();
+		configureProjectRealmCache();
 		configureMojoExecution();
 	}
 
-	// org.apache.maven.exception
+	private void configureRuntimeInformation()
+	{
+		Key<DefaultRuntimeInformation> key = Key.get(DefaultRuntimeInformation.class, named("default"));
+
+		bind(key).to(DefaultRuntimeInformation.class);
+		bind(Key.get(RuntimeInformation.class, named("default"))).to(key);
+	}
 
 	private void configureExceptionHandler()
 	{
@@ -46,8 +61,6 @@ public class MavenCoreModule extends AbstractModule
 		bind(Key.get(ExceptionHandler.class, named("default"))).to(key);
 	}
 
-	// org.apache.maven.artifact.repository.layout
-
 	private void configureArtifactRepositoryLayout()
 	{
 		Key<DefaultRepositoryLayout> key = Key.get(DefaultRepositoryLayout.class, named("default"));
@@ -55,8 +68,6 @@ public class MavenCoreModule extends AbstractModule
 		bind(key).to(DefaultRepositoryLayout.class);
 		bind(Key.get(ArtifactRepositoryLayout.class, named("default"))).to(key);
 	}
-
-	// org.apache.maven.artifact.repository.metadata
 
 	private void configureMetadataReader()
 	{
@@ -66,8 +77,6 @@ public class MavenCoreModule extends AbstractModule
 		bind(Key.get(MetadataReader.class, named("default"))).to(key);
 	}
 
-	// org.apache.maven.artifact.resolver
-
 	private void configureResolutionErrorHandler()
 	{
 		Key<DefaultResolutionErrorHandler> key = Key.get(DefaultResolutionErrorHandler.class, named("default"));
@@ -76,14 +85,28 @@ public class MavenCoreModule extends AbstractModule
 		bind(Key.get(ResolutionErrorHandler.class, named("default"))).to(key);
 	}
 
-	// org.apache.maven.configuration
-
 	private void configureBeanConfigurator()
 	{
 		Key<DefaultBeanConfigurator> key = Key.get(DefaultBeanConfigurator.class, named("default"));
 
 		bind(key).to(DefaultBeanConfigurator.class);
 		bind(Key.get(BeanConfigurator.class, named("default"))).to(key);
+	}
+
+	private void configureLegacySupport()
+	{
+		Key<DefaultLegacySupport> key = Key.get(DefaultLegacySupport.class, named("default"));
+
+		bind(key).to(DefaultLegacySupport.class);
+		bind(Key.get(LegacySupport.class, named("default"))).to(key);
+	}
+
+	private void configureProjectRealmCache()
+	{
+		Key<DefaultProjectRealmCache> key = Key.get(DefaultProjectRealmCache.class, named("default"));
+
+		bind(key).to(DefaultProjectRealmCache.class);
+		bind(Key.get(ProjectRealmCache.class, named("default"))).to(key);
 	}
 
 	private void configureMojoExecution()
