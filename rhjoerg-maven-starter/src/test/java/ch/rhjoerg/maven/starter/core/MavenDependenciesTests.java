@@ -71,6 +71,7 @@ public class MavenDependenciesTests
 		}
 
 		map.remove("org.apache.maven.execution.scope.internal");
+		map.remove("org.apache.maven.session.scope.internal");
 
 		List<String> pkgs = new ArrayList<>(map.keySet());
 
@@ -83,6 +84,6 @@ public class MavenDependenciesTests
 		String pkg = pkgs.get(0);
 		System.out.println("proposed package: " + pkg);
 
-		map.get(pkg).forEach(entry -> System.out.println("- " + entry.key + " (" + entry.source + ")"));
+		map.get(pkg).forEach(entry -> System.out.println("- " + entry.key + "\r\n    (" + entry.source + ")"));
 	}
 }
