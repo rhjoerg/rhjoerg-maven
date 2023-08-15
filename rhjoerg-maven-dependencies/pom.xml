@@ -29,7 +29,7 @@
 		<maven-artifact.version>3.6.3</maven-artifact.version>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.maven/maven-core -->
-		<maven-core.version>3.6.3</maven-core.version>
+		<maven-core.version>3.8.1</maven-core.version>
 
 		<!-- https://mvnrepository.com/artifact/org.apache.maven/maven-model -->
 		<maven-model.version>3.6.3</maven-model.version>
